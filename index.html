@@ -1144,7 +1144,7 @@
 <body>
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
-        <div class="ranzi-loader">👨‍🏫</div>
+        <div class="ranzi-loader"><img src="images/ranzi.png" alt="Professor Ranzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
         <div class="loading-text">Carregando...</div>
     </div>
 
@@ -1189,7 +1189,7 @@
 
         <div class="header" style="display: none;">
             <h1>
-                <span class="professor-avatar" id="ranziAvatar">👨‍🏫</span>
+                <span class="professor-avatar" id="ranziAvatar"><img src="images/ranzi.png" alt="Professor Ranzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></span>
                 PI-RADS v2.1
             </h1>
             <p style="color: var(--text-secondary); font-size: 13px; margin-top: 4px; font-weight: 600; font-family: var(--font-secondary);">com Professor Ranzi</p>
@@ -1358,7 +1358,7 @@
             const expressions = {
                 happy: '😊',
                 angry: '😠',
-                neutral: '👨‍🏫',
+                neutral: '<img src="images/ranzi.png" alt="Ranzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">',
                 proud: '😤',
                 worried: '😰'
             };
@@ -1700,7 +1700,7 @@
             
             // Update final Ranzi character based on performance
             const finalRanziChar = document.getElementById('finalRanziCharacter');
-            let ranziExpression = '👨‍🏫';
+            let ranziExpression = '<img src="images/ranzi.png" alt="Ranzi" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">';
             if (score >= 9) ranziExpression = '🎉';
             else if (score >= 7) ranziExpression = '😊';
             else if (score >= 4) ranziExpression = '😐';
