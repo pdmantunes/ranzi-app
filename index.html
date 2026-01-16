@@ -1413,7 +1413,7 @@
         function loadQuestion() {
             const question = questions[currentQuestion];
             
-            // Limpar estado anterior (redundância proposital para garantir)
+            // GARANTIR que o feedback esteja escondido ao carregar nova questão
             const feedbackSheet = document.getElementById('feedbackSheet');
             if (feedbackSheet) {
                 feedbackSheet.classList.remove('show');
@@ -1618,7 +1618,8 @@
             feedbackTitle.textContent = title;
             feedbackMessage.innerHTML = message;
             
-            // Show bottom sheet
+            // GARANTIR que o bottom sheet seja exibido
+            feedbackSheet.style.display = 'block';
             feedbackSheet.classList.remove('hidden');
             feedbackSheet.classList.add('show');
             
@@ -1631,19 +1632,13 @@
         function nextQuestion() {
             console.log('Next question called');
             
-            // CRÍTICO: Limpar feedback anterior COMPLETAMENTE
+            // CORREÇÃO: Esconder o bottom sheet de feedback ao avançar
             const feedbackSheet = document.getElementById('feedbackSheet');
             if (feedbackSheet) {
                 feedbackSheet.classList.remove('show');
                 feedbackSheet.classList.add('hidden');
-                feedbackSheet.style.display = 'none'; // Forçar esconder
+                feedbackSheet.style.display = 'none';
             }
-            
-            // Limpar conteúdo do feedback
-            const feedbackTitle = document.getElementById('feedbackTitle');
-            const feedbackMessage = document.getElementById('feedbackMessage');
-            if (feedbackTitle) feedbackTitle.textContent = '';
-            if (feedbackMessage) feedbackMessage.textContent = '';
             
             // Esconder botão CONTINUAR
             const continueBtn = document.getElementById('continueBtn');
@@ -1651,23 +1646,17 @@
                 continueBtn.style.display = 'none';
             }
             
-            // Remover classes de feedback das opções
-            document.querySelectorAll('.option-btn').forEach(opt => {
-                opt.classList.remove('correct', 'incorrect', 'disabled', 'selected');
-            });
-            
-            // Resetar estado do Ranzi
+            // Limpar conteúdo do feedback
+            const feedbackTitle = document.getElementById('feedbackTitle');
+            const feedbackMessage = document.getElementById('feedbackMessage');
             const ranziFeedback = document.getElementById('ranziFeedback');
-            if (ranziFeedback) {
-                ranziFeedback.className = 'ranzi-avatar-feedback';
-            }
+            if (feedbackTitle) feedbackTitle.textContent = '';
+            if (feedbackMessage) feedbackMessage.innerHTML = '';
+            if (ranziFeedback) ranziFeedback.textContent = '';
             
             currentQuestion++;
 
             if (currentQuestion < questions.length) {
-                document.getElementById('checkBtn').style.display = 'flex';
-                document.getElementById('questionContainer').style.opacity = '1';
-                selectedOption = null;
                 loadQuestion();
                 
                 // Scroll to top
